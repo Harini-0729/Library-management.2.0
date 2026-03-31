@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Library Management System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+/* ========== INTRO PAGE ========== */
+.intro-page{
+    position:absolute;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:black;
+}
+
+/* Background */
+.intro-page::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f') no-repeat center/cover;
+    animation:zoomBg 20s infinite alternate;
+    z-index:-1;
+}
+
+@keyframes zoomBg{
+    from{transform:scale(1);}
+    to{transform:scale(1.2);}
+}
+
+.logo{
+    width:120px;
+    margin-bottom:10px;
+}
+
+.brand{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.intro-page h1{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.intro-page button{
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:6px;
+    background:white;
+    color:#2a5298;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.quotes{
+    margin-top:20px;
+    font-size:16px;
+    max-width:600px;
+}
+
+/* ========== LOGIN PAGE ========== */
+.login-page{
+    display:none;
+    min-height:100vh;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+}
+
+/* Live animated book background */
+.login-page::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:url('https://images.unsplash.com/photo-1512820790803-83ca734da794') no-repeat center/cover;
+    animation:moveBg 15s infinite alternate;
+    z-index:-1;
+}
+
+@keyframes moveBg{
+    from{transform:scale(1);}
+    to{transform:scale(1.15);}
+}
+
+.container{
+    width:380px;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.login-logo{
+    width:80px;
+    margin-bottom:5px;
+}
+
+.login-title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.login-btn{
+    width:100%;
+    padding:10px;
+    background:#2c3e50;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.terms{
+    font-size:13px;
+    margin:10px 0;
+}
+
+/* ========== DASHBOARD PAGE ========== */
+.dashboard{
+    display:none;
+    min-height:100vh;
+    background:url('https://images.unsplash.com/photo-1519682337058-a94d519337bc') no-repeat center/cover;
+    color:white;
+    padding:20px;
+}
+
+/* Header with logo */
+.header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.header img{
+    width:50px;
+}
+
+.header-title{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.center-title{
+    text-align:center;
+    margin-top:20px;
+    font-size:35px;
+}
+
+.search-box{
+    display:flex;
+    justify-content:center;
+    margin:20px 0;
+}
+
+.search-box input{
+    width:300px;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+}
+
+.categories{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:30px;
+}
+
+.cat{
+    padding:10px 15px;
+    background:rgba(255,255,255,0.2);
+    border-radius:6px;
+}
+
+.authors{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.author{
+    text-align:center;
+    background:rgba(0,0,0,0.5);
+    padding:15px;
+    border-radius:10px;
+}
+
+.author img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div class="intro-page" id="intro">
+
+<img src="library management.jpg" class="logo">
+<div class="brand">Library Management</div>
+
+<h1>Welcome to Library Management System</h1>
+
+<div class="quotes">
+<p>"A room without books is like a body without a soul."</p>
+<p>"Books are a uniquely portable magic."</p>
+<p>"Reading is to the mind what exercise is to the body."</p>
+</div>
+
+<button onclick="enterSite()">Enter System</button>
+</div>
+
+<!-- LOGIN -->
+<div class="login-page" id="loginPage">
+<div class="container">
+
+<img src="library management.jpg" class="login-logo">
+<div class="login-title">Library Management</div>
+
+<h2>Login</h2>
+
+<form onsubmit="goDashboard(event)">
+<input type="email" placeholder="Email" required><br><br>
+<input type="password" placeholder="Password" required><br><br>
+
+<div class="terms">
+<input type="checkbox" id="agree" required>
+<label for="agree"> I agree to Terms & Conditions</label>
+</div>
+
+<button class="login-btn">Login</button>
+</form>
+
+</div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+
+<div class="header">
+<img src="library management.jpg">
+<div class="header-title">Library Management</div>
+</div>
+
+<div class="center-title">
+Library Dashboard
+</div>
+
+<div class="search-box">
+<input type="text" placeholder="Search books...">
+</div>
+
+<div class="categories">
+<div class="cat">Novel</div>
+<div class="cat">Magazine</div>
+<div class="cat">Story</div>
+<div class="cat">Fantasy</div>
+<div class="cat">Physics</div>
+<div class="cat">Communication</div>
+</div>
+
+<div class="authors">
+
+<div class="author">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Shakespeare.jpg">
+<h3>William Shakespeare</h3>
+<p>Hamlet, Macbeth</p>
+</div>
+
+<div class="author">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Stephen_Hawking.StarChild.jpg">
+<h3>Stephen Hawking</h3>
+<p>Brief History of Time</p>
+</div>
+
+<div class="author">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/J._K._Rowling_2010.jpg">
+<h3>J.K. Rowling</h3>
+<p>Harry Potter Series</p>
+</div>
+
+</div>
+
+</div>
+
+<script>
+function enterSite(){
+    document.getElementById("intro").style.display="none";
+    document.getElementById("loginPage").style.display="flex";
+}
+
+function goDashboard(e){
+    e.preventDefault();
+    document.getElementById("loginPage").style.display="none";
+    document.getElementById("dashboard").style.display="block";
+}
+</script>
+
+</body>
+</html>
